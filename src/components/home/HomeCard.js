@@ -5,21 +5,45 @@ import { FaYoutube } from "react-icons/fa";
 const HomeCard = (props) => {
   return (
     <>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="https://picsum.photos/200" />
-        <Card.Body>
-          <Card.Title>{props.title}</Card.Title>
-          <Card.Text>{props.text}</Card.Text>
-          {true ? (
-            <Button variant="danger">
-              <FaYoutube /> YouTube
-            </Button>
-          ) : (
-            <></>
-          )}
-          {false ? <Button variant="light">Notion</Button> : <></>}
-        </Card.Body>
-      </Card>
+      <div className="project-card">
+        <div className="project-card-inner">
+          <div className="project-card-front">
+            <Card.Img
+              variant="top"
+              className="project-image"
+              src="https://picsum.photos/200"
+            />
+            <Card.Title className="project-title">{props.title}</Card.Title>
+          </div>
+          <div className="project-card-back">
+            <Card.Body>
+              <Card.Text className="project-description">
+                {props.description}
+              </Card.Text>
+              {props.youtube ? (
+                <Button
+                  variant="danger"
+                  onClick={() => window.open(props.youtube)}
+                >
+                  <FaYoutube /> YouTube
+                </Button>
+              ) : (
+                <></>
+              )}
+              {props.notion ? (
+                <Button
+                  variant="dark"
+                  onClick={() => window.open(props.notion)}
+                >
+                  Notion
+                </Button>
+              ) : (
+                <></>
+              )}
+            </Card.Body>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

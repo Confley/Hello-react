@@ -1,33 +1,39 @@
 import React from "react";
-import HomeCard from "./components/home/HomeCard";
-import { Button, Container } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { SiIcons8, SiReactbootstrap } from "react-icons/si";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/home/Home";
+import Layout from "./Layout";
+import Test from "./components/Test";
+
+const routes = [
+  { path: "test", element: <Test /> },
+];
+
+// Define las rutas que no tendrán el diseño pre-definido
+export const noLayoutRoute = ["/test"];
 
 const App = () => {
   return (
     <>
-      <h1>App</h1>
-
-      <>
-        <Button
-          variant="primary"
-          onClick={() => window.open("https://react-bootstrap.netlify.app/")}
-        >
-          <SiReactbootstrap /> Bootstrap
-        </Button>
-        <Button
-          variant="success"
-          onClick={() =>
-            window.open("https://react-icons.github.io/react-icons/")
-          }
-        >
-          <SiIcons8 /> Icons
-        </Button>
-      </>
-      <Container>
-        <HomeCard />
-      </Container>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={<Layout />}
+          >
+            <Route
+              index
+              element={<Home />}
+            />
+            {routes.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Route>
+        </Routes>
+      </Router>
     </>
   );
 };
