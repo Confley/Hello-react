@@ -1,2 +1,2 @@
 # Hello react
- Para poner todo lo que voy aprendiendo de React JS
+ Para guardar mis componentes de React JS para implementarlos luego en un proyecto futuro **Top Secret**
